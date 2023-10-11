@@ -1,79 +1,118 @@
-<div class="form">
-    
-      <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a href="#login">Log In</a></li>
-      </ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login and Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
 
-      <div class="tab-content">
-        <div id="signup">
-          <h1>Sign Up for Free</h1>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-          <form action="/" method="post">
+        .form-group {
+            margin: 20px 0;
+        }
 
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                First Name<span class="req">*</span>
-              </label>
-              <input type="text" required autocomplete="off" />
-            </div>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-            <div class="field-wrap">
-              <label>
-                Last Name<span class="req">*</span>
-              </label>
-              <input type="text"required autocomplete="off"/>
-            </div>
-          </div>
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-          <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input type="email"required autocomplete="off"/>
-          </div>
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
 
-          <div class="field-wrap">
-            <label>
-              Set A Password<span class="req">*</span>
-            </label>
-            <input type="password"required autocomplete="off"/>
-          </div>
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
 
-          <button type="submit" class="button button-block"/>Get Started</button>
+        .text-center {
+            text-align: center;
+        }
 
-          </form>
+        /* Style for the login and register tabs */
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+        }
 
-        </div>
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
 
-        <div id="login">
-          <h1>Welcome Back!</h1>
+        /* Style for the active tab */
+        .active {
+            background: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tabs">
+        <div class="tab active" id="loginTab">Login</div>
+        <div class="tab" id="registerTab">Register</div>
+    </div>
 
-          <form action="/" method="post">
+    <div id="loginForm" class="form-group">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password">
+        <button>Login</button>
+    </div>
 
-            <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input type="email"required autocomplete="off"/>
-          </div>
+    <div id="registerForm" class="form-group" style="display: none;">
+        <label for="registerEmail">Email:</label>
+        <input type="email" id="registerEmail" placeholder="Enter your email">
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" placeholder="Enter your password">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <button>Register</button>
+    </div>
+</div>
 
-          <div class="field-wrap">
-            <label>
-              Password<span class="req">*</span>
-            </label>
-            <input type="password"required autocomplete="off"/>
-          </div>
+<script>
+    // JavaScript to handle tab switching
+    document.getElementById("loginTab").addEventListener("click", function () {
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("registerForm").style.display = "none";
+        document.getElementById("loginTab").classList.add("active");
+        document.getElementById("registerTab").classList.remove("active");
+    });
 
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
-
-          <button class="button button-block"/>Log In</button>
-
-          </form>
-
-        </div>
-
-      </div><!-- tab-content -->
-
-</div> <!-- /form -->
+    document.getElementById("registerTab").addEventListener("click", function () {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("registerForm").style.display = "block";
+        document.getElementById("loginTab").classList.remove("active");
+        document.getElementById("registerTab").classList.add("active");
+    });
+</script>
+</body>
+</html>
