@@ -1,118 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login and Registration</title>
-    <style>
+<style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
         }
 
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
             padding: 20px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
-            margin: 20px 0;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"] {
-            width: 100%;
+        nav {
+            background-color: #444;
+            text-align: center;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
 
-        button {
-            background-color: #007bff;
+        nav a {
             color: #fff;
-            border: none;
-            border-radius: 5px;
+            text-decoration: none;
             padding: 10px 20px;
-            cursor: pointer;
         }
 
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        /* Style for the login and register tabs */
-        .tabs {
+        .destination {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
         }
 
-        .tab {
-            flex: 1;
+        .destination-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 30%;
+        }
+
+        .destination-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            background-color: #444;
+            color: #fff;
             text-align: center;
             padding: 10px;
-            cursor: pointer;
-        }
-
-        /* Style for the active tab */
-        .active {
-            background: #007bff;
-            color: #fff;
         }
     </style>
+<head>
+    <title>Travel Destinations</title>
 </head>
 <body>
-<div class="container">
-    <div class="tabs">
-        <div class="tab active" id="loginTab">Login</div>
-        <div class="tab" id="registerTab">Register</div>
+    <header>
+        <h1>Welcome to Our Travel Destinations</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Destinations</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="destination">
+        <div class="destination-item">
+            <img src="paris.jpg" alt="Paris" class="destination-image">
+            <h2>Paris, France</h2>
+            <p>Experience the City of Love with its iconic landmarks, delicious cuisine, and romantic ambiance.</p>
+        </div>
+        <div class="destination-item">
+            <img src="new-york.jpg" alt="New York" class="destination-image">
+            <h2>New York City, USA</h2>
+            <p>Explore the city that never sleeps, with its skyscrapers, Broadway shows, and diverse culture.</p>
+        </div>
+        <div class="destination-item">
+            <img src="tokyo.jpg" alt="Tokyo" class="destination-image">
+            <h2>Tokyo, Japan</h2>
+            <p>Discover the modern metropolis of Tokyo, where tradition meets technology in a unique blend.</p>
+        </div>
     </div>
+    <footer>
+        &copy;Dominic Canete BSCS F2
+    </footer>
 
-    <div id="loginForm" class="form-group">
-        <label for="loginEmail">Email:</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email">
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" placeholder="Enter your password">
-        <button>Login</button>
-    </div>
-
-    <div id="registerForm" class="form-group" style="display: none;">
-        <label for="registerEmail">Email:</label>
-        <input type="email" id="registerEmail" placeholder="Enter your email">
-        <label for="registerPassword">Password:</label>
-        <input type="password" id="registerPassword" placeholder="Enter your password">
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" placeholder="Confirm your password">
-        <button>Register</button>
-    </div>
-</div>
-
-<script>
-    // JavaScript to handle tab switching
-    document.getElementById("loginTab").addEventListener("click", function () {
-        document.getElementById("loginForm").style.display = "block";
-        document.getElementById("registerForm").style.display = "none";
-        document.getElementById("loginTab").classList.add("active");
-        document.getElementById("registerTab").classList.remove("active");
-    });
-
-    document.getElementById("registerTab").addEventListener("click", function () {
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("registerForm").style.display = "block";
-        document.getElementById("loginTab").classList.remove("active");
-        document.getElementById("registerTab").classList.add("active");
-    });
-</script>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Register</button>
+    </form>
 </body>
 </html>

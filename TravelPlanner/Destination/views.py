@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import DestinationRegister
 
@@ -14,7 +14,7 @@ def index(request):
     else:
         form = DestinationRegister()
 
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'index.html', {'form': index.html})
 
 
 class HomeView(View):
@@ -23,3 +23,19 @@ class HomeView(View):
     def get(self, request):
         form = DestinationRegister()
         return render(request, self.template_name, {'form': form})
+
+
+def customer_register(request):
+    """Register a new user."""
+    if request.method != 'POST':
+        # Display blank registration form.
+        form = DestinationRegister()
+    else:
+        # Process completed form.
+        form = DestinationRegister(data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Location Added successfully!")
+    context = {'form': form}
+    return render(request, 'index.html', context)

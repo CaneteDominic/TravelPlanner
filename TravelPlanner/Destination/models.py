@@ -19,7 +19,7 @@ class User(models.Model):
 
 class Destinations(models.Model):
     destination_id = models.BigAutoField(primary_key=True)
-    destination_name = models.CharField(max_length=20)
+    destination_name = models.CharField(max_length=20, unique=True)
     description = models.TextField()
     location = models.CharField(max_length=20)
 
