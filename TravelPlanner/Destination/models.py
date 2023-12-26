@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
@@ -29,10 +29,11 @@ class Destinations(models.Model):
 
 class Review(models.Model):
     review_id = models.BigAutoField(primary_key=True)
-    user_id = models.CharField(max_length=20)
-    rating = models.IntegerField(max_length=2)
-    comment = models.TextField
-    date_posted = models.DateField
+    destination = models.ForeignKey(Destinations, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.review_id

@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'TravelPlanner.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'TravelPlanner',
+        'NAME': 'destination1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',

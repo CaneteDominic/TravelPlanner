@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; /* Light brown background */
+      color: #333; /* Dark text color */
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #66462f; /* Brown heading color */
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff; /* White table background */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #b3c689; /* Green header background */
+      color: #fff; /* White text color */
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #ede8d3; /* Alternate row background */
+    }
+
+    tbody tr:hover {
+      background-color: #f3f0e1; /* Hover row background */
+    }
+
+    button {
+      background-color: #b3c689; /* Green button background */
+      color: #fff; /* White text color */
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #8d9d63; /* Darker green on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Destinations</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Destination information will be dynamically added here -->
+      {% for d in destinations %}
+      <tr>
+        <td>{{ d.destination_name }}</td>
+        <td>{{ d.location }}</td>
+        <td>{{ d.description }}</td>
+        <td>
+          <form action="{% url 'Destination:user_reviews' %}" method="GET">
+          <input type="hidden" name="destination_id" value="{{ d.id }}">
+          <button type="submit">Reviews</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
+</html>
