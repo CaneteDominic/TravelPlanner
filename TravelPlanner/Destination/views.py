@@ -70,28 +70,31 @@ class UserRegister(View):
 
 
 class user_reviews(View):
-    def get(self, request):
-        reviews = Review.objects.all()
-        return render(request, 'reviews.html', {'reviews': reviews})
+    def get(self, request, destination_id):
+        # Fetch destination-specific reviews (assuming you have a method to filter reviews by destination)
+        destination_reviews = Review.objects.filter(destination_id=destination_id)
+        return render(request, 'reviews.html', {'destination_reviews': destination_reviews, 'destination_id': destination_id})
+
 
     def post(self, request):
         username = request.POST.get('username')
         rating = request.POST.get('rating')
         comment = request.POST.get('comment')
-        print(username, rating, comment)
+        destination_id = request.POST.get('destination_id')
 
         add_review_view = AddReviews()
         if username and rating and comment:
-            add_review_view.add_review(username, rating, comment)
-            return HttpResponseRedirect('/Destination/view_reviews/')
+            add_review_view.add_review(username, rating, comment, destination_id)
+            return HttpResponseRedirect('view_review')
 
 class AddReviews(View):
     template = 'reviews.html'
 
-    def add_review(self, username, rating, comment):
-        if username and rating and comment:
+    def add_review(self, username, rating, comment, destination_id):
+
+        if username and rating and comment and destination_id:
             with connection.cursor() as cursor:
-                cursor.callproc('add_review', (username, rating, comment))
+                cursor.callproc('add_review', (username, rating, comment, destination_id))
                 cursor.close()
 
     def get(self, request):
