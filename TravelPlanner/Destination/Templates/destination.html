@@ -79,12 +79,13 @@
       {% for d in destinations %}
       <tr>
         <td>{{ d.destination_name }}</td>
-        <td>{{ d.location }}</td>
+          <td>{{ d.location }}</td>
         <td>{{ d.description }}</td>
         <td>
-          <form action="{% url 'Destination:user_reviews' %}" method="GET">
+          <form action="{% url 'Destination:user_reviews' %}" method="POST">
+             {% csrf_token %}
           <input type="hidden" name="destination_id" value="{{ d.id }}">
-          <button type="submit">Reviews <href></href></button>
+          <button type="submit">Reviews </button>
           </form>
         </td>
       </tr>

@@ -69,12 +69,11 @@ class UserRegister(View):
             return render(request, self.template, {'form': form})
 
 
+
 class user_reviews(View):
     def get(self, request, destination_id):
-        # Fetch destination-specific reviews (assuming you have a method to filter reviews by destination)
         destination_reviews = Review.objects.filter(destination_id=destination_id)
         return render(request, 'reviews.html', {'destination_reviews': destination_reviews, 'destination_id': destination_id})
-
 
     def post(self, request):
         username = request.POST.get('username')
@@ -83,7 +82,7 @@ class user_reviews(View):
         destination_id = request.POST.get('destination_id')
 
         add_review_view = AddReviews()
-        if username and rating and comment:
+        if username and rating and comment and destination_id:
             add_review_view.add_review(username, rating, comment, destination_id)
             return HttpResponseRedirect('view_review')
 
