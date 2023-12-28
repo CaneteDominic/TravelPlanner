@@ -91,8 +91,8 @@
   </div>
 
   <h2>Add Review</h2>
-  <form id="addReviewForm" action="{% url 'Destination:user_reviews' destination_id %}" method="POST">
-   <input type="hidden" name="destination_id" value="{{ destination_id }}">
+  <form id="addReviewForm" action="{% url 'Destination:user_reviews' %}" method="POST">
+   <input type="hidden" name="destination_id" value="{{ destination_reviews.destination }}">
     <p>{{destination_id}}</p>
     <label for="username">Your Name:</label>
     <input type="text" id="username" name="username" required><br><br>
