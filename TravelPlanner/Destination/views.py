@@ -72,7 +72,9 @@ class UserRegister(View):
 
 class user_reviews(View):
     def get(self, request, destination_id):
-        return render(request, 'reviews.html')
+        destination_reviews = Review.objects.filter(destination =destination_id)
+        context = {'destination_reviews': destination_reviews}
+        return render(request, 'reviews.html', context)
 
     def post(self, request):
         username = request.POST.get('username')
