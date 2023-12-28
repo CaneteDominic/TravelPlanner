@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class User(models.Model):
     user_id = models.BigAutoField(primary_key=True)
     username = models.CharField(max_length=20)
@@ -32,7 +33,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now)
+    date_posted = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.review_id

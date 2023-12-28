@@ -82,8 +82,7 @@
           <td>{{ d.location }}</td>
         <td>{{ d.description }}</td>
         <td>
-          <form action="{% url 'Destination:user_reviews' %}" method="POST">
-             {% csrf_token %}
+          <form action="{% url 'Destination:item_review' d.destination_id %}" method="GET">
           <input type="hidden" name="destination_id" value="{{ d.id }}">
           <button type="submit">Reviews </button>
           </form>
